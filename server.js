@@ -21,6 +21,17 @@ app.use(express.json({ limit : '1mb' })) ;
 // loading the database
 database.loadDatabase() ;
 
+app.get('/api', (request, response) => {
+    console.log('fetching the items in the database') ;
+    database.find({}, (err, data) => {
+        if(err) {
+            response.end() ;
+            return ;
+        }
+        response.json(data) ;
+    }) ;
+}) ;
+
 app.post('/api', (request, response)=>{
     console.log('server got a request !') ;
     const timestamp = Date.now() ;

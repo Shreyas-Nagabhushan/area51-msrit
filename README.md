@@ -8,5 +8,7 @@
     check if the dependencies in the package.json file is updated (express: version)
 
 SERVER SIDE BASICS
-
+    import express as express import nedb as Datastore
+    listen the server on some port serve the static files
+    complete the method app.post() 
 

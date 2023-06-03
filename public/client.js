@@ -28,6 +28,7 @@ if(available){
         const response = await fetch('/api', options) ;
         const status = await response.json() ;
         console.log(status) ;
+        if(status == 'success') alert("success") ;
     }) ;
 }
 else{
