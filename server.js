@@ -1,5 +1,6 @@
 //importing the required modules
 const express = require('express') ;
+// const fetch = require('node-fetch') ;
 const Datastore = require('nedb') ;
 
 //  constants in program
@@ -39,6 +40,15 @@ app.post('/api', (request, response)=>{
     data.timestamp = timestamp ;
     database.insert(data) ;
     response.json('success') ;
+}) ;
+
+app.get('/logs/remove/:username', (request, response) => {
+    const username = request.params.username ;
+    console.log(username) ;
+    database.remove({username:username}, (err, nums) => {
+        if(err) console.error(err) ;
+        console.log(`${nums} elements removed`) ;
+    }) ;
 }) ;
 
 
