@@ -1,23 +1,30 @@
+
+// const intervalId = setInterval(getData, 16) ;
+let prev_data ;
+let data ;
 getData() ;
-const intervalId = setInterval(getData, 2000) ;
 
-async function getData() {
-    document.getElementById('tweets').innerHTML = '' ;
+async function getData() 
+{
     const response = await fetch('/api') ;
-    const data = await response.json() ;
-    console.log(data) ;
+    data = await response.json() ;
+    if(!prev_data ||  Object.keys(data).length != Object.keys(prev_data).length)
+    {
+        console.log('not equal') ;
+        document.getElementById('tweets').innerHTML = '' ;
+        console.log(Object.keys(data).length) ;
+        for(item of data) {
+            const root = document.createElement('p') ;
+            const tweet = document.createElement('div') ;
+            const timestamp = document.createElement('div') ;
+            root.append(tweet, timestamp) ;
     
-    for(item of data) {
-        const root = document.createElement('p') ;
-        const tweet = document.createElement('div') ;
-        const timestamp = document.createElement('div') ;
-        root.append(tweet, timestamp) ;
-
-        tweet.textContent = `${item.username} : ${item.tweet}` ;
-        timestamp.textContent = `time : ${item.timestamp}` ;
-
-        document.getElementById('tweets').append(root) ;
+            tweet.textContent = `${item.username} : ${item.tweet}` ;
+            timestamp.textContent = `time : ${item.timestamp}` ;
+    
+            document.getElementById('tweets').append(root) ;
+        }
     }
-    
-   
+    prev_data = data ;
+    await getData() ;
 }
