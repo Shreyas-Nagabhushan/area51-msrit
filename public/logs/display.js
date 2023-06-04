@@ -1,6 +1,8 @@
 getData() ;
+const intervalId = setInterval(getData, 2000) ;
 
 async function getData() {
+    document.getElementById('tweets').innerHTML = '' ;
     const response = await fetch('/api') ;
     const data = await response.json() ;
     console.log(data) ;
@@ -14,7 +16,7 @@ async function getData() {
         tweet.textContent = `${item.username} : ${item.tweet}` ;
         timestamp.textContent = `time : ${item.timestamp}` ;
 
-        document.body.append(root) ;
+        document.getElementById('tweets').append(root) ;
     }
     
    
