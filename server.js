@@ -6,9 +6,10 @@ const Datastore = require('nedb') ;
 //  constants in program
 const port = 3000 || process.env.PORT ;
 
-// initialing the express application and the database
+// initialing the express application and the message_database
 const app = express() ; 
-const database = new Datastore('database.db') ;
+const message_database = new Datastore('message_database.db') ;
+const credential_database = new Datastore('credential_database.db') ;
 
 // making the server to listen for incoming connections/requests
 app.listen(port, ()=> console.log(`listening to server at port ${port}`)) ;
@@ -19,12 +20,12 @@ app.use(express.static('public')) ;
 // ?
 app.use(express.json({ limit : '1mb' })) ;
 
-// loading the database
-database.loadDatabase() ;
+// loading the message_database
+message_database.loadDatabase() ;
 
 
 app.get('/api', (request, response) => {
-database.find({}).sort({"timestamp":-1}).exec(function(err, data) {
+message_database.find({}).sort({"timestamp":+1}).exec(function(err, data) {
     if (err) {
         response.end();
         return;
@@ -34,8 +35,8 @@ database.find({}).sort({"timestamp":-1}).exec(function(err, data) {
 }) ;
 
 // app.get('/api', (request, response) => {
-//     console.log('fetching the items in the database') ;
-//     database.find({}, (err, data) => {
+//     console.log('fetching the items in the message_database') ;
+//     message_database.find({}, (err, data) => {
 //         if(err) {
 //             response.end() ;
 //             return ;
@@ -49,14 +50,14 @@ app.post('/api', (request, response)=>{
     const timestamp = Date.now() ;
     const data = request.body ;
     data.timestamp = timestamp ;
-    database.insert(data) ;
+    message_database.insert(data) ;
     response.json('success') ;
 }) ;
 
 app.get('/logs/remove/:username', (request, response) => {
     const username = request.params.username ;
     console.log(username) ;
-    database.remove({username:username}, (err, nums) => {
+    message_database.remove({username:username}, (err, nums) => {
         if(err) console.error(err) ;
         console.log(`${nums} elements removed`) ;
     }) ;

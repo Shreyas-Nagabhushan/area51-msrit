@@ -1,0 +1,40 @@
+body{
+    background-color: rgb(26, 26, 26) ;
+    color: white ;
+}
+a{
+    color: white ;
+    padding: 10px ;
+    text-decoration: none ;
+    font-size: 20px ;
+}
+a:hover{
+    color: #07fa07 ;
+}
+p{
+  font-size: 23px ;
+  color: orange ;
+}
+#ips{
+    padding: 5px ;
+}
+#submit{
+    padding: 5px ;
+    
+}
+#username{
+  font-size: 23px ;
+  border-radius: 5px ;
+}
+button {
+  background-color: #24b82a; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 23px;
+  border-radius: 5px ;
+  
+}

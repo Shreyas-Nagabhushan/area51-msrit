@@ -6,7 +6,7 @@ getData() ;
 
 async function getData() 
 {
-    const response = await fetch('/api') ;
+    const response = await fetch('../api') ;
     data = await response.json() ;
     if(!prev_data ||  Object.keys(data).length != Object.keys(prev_data).length)
     {
@@ -16,11 +16,9 @@ async function getData()
         for(item of data) {
             const root = document.createElement('p') ;
             const tweet = document.createElement('div') ;
-            const timestamp = document.createElement('div') ;
-            root.append(tweet, timestamp) ;
+            root.append(tweet) ;
     
             tweet.textContent = `${item.username} : ${item.tweet}` ;
-            timestamp.textContent = `time : ${item.timestamp}` ;
     
             document.getElementById('tweets').append(root) ;
         }

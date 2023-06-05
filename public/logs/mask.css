@@ -1,0 +1,41 @@
+body{
+    background-color: rgb(26, 26, 26) ;
+    color: white ;
+}
+a{
+    color: white ;
+    padding: 10px ;
+    text-decoration: none ;
+    font-size: 20px ;
+}
+a:hover{
+    color: #07fa07 ;
+}
+#input{
+    font-size: 24px ;
+}
+#ips{
+    padding: 5px ;
+    color: orange ;
+  
+}
+#submit{
+    padding: 5px ;
+    
+}
+#username{
+  font-size: 20px ;
+}
+#tweet{
+  font-size: 20px ;
+}
+button {
+  background-color: #0fcf17; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 23px;
+  border-radius: 5px ;
+}

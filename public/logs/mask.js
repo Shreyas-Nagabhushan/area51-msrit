@@ -1,4 +1,5 @@
-let lat, lon, username ;
+
+let username ;
 let data ;
 
 document.getElementById('submit').addEventListener('click', async ()=>{
@@ -12,7 +13,7 @@ document.getElementById('submit').addEventListener('click', async ()=>{
         body : JSON.stringify(data)   
     } ;
 
-    const response = await fetch('/api', options) ;
+    const response = await fetch('../api', options) ;
     const status = await response.json() ;
     console.log(status) ;
     if(status == 'success') alert("posted") ;
