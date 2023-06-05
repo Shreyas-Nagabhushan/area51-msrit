@@ -14,8 +14,8 @@ const credential_database = new Datastore('credential_database.db') ;
 // making the server to listen for incoming connections/requests
 app.listen(port, ()=> console.log(`listening to server at port ${port}`)) ;
 
-// making the app to serve the static files in the docs directory
-app.use(express.static('docs')) ;
+// making the app to serve the static files in the public directory
+app.use(express.static('public')) ;
 
 // ?
 app.use(express.json({ limit : '1mb' })) ;
