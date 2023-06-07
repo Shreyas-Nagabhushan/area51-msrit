@@ -3,6 +3,9 @@ const express = require('express') ;
 // const fetch = require('node-fetch') ;
 const Datastore = require('nedb') ;
 
+import { initializeApp } from 'firebase-admin';
+const fbapp = initializeApp() ;
+
 //  constants in program
 const port = 3000 || process.env.PORT ;
 
@@ -22,6 +25,7 @@ app.use(express.json({ limit : '1mb' })) ;
 
 // loading the message_database
 message_database.loadDatabase() ;
+credential_database.loadDatabase() ;
 
 
 app.get('/api', (request, response) => {
@@ -34,16 +38,6 @@ message_database.find({}).sort({"timestamp":+1}).exec(function(err, data) {
 });
 }) ;
 
-// app.get('/api', (request, response) => {
-//     console.log('fetching the items in the message_database') ;
-//     message_database.find({}, (err, data) => {
-//         if(err) {
-//             response.end() ;
-//             return ;
-//         }
-//         response.json(data) ;
-//     }) ;
-// }) ;
 
 app.post('/api', (request, response)=>{
     console.log('server got a request !') ;
@@ -52,6 +46,15 @@ app.post('/api', (request, response)=>{
     data.timestamp = timestamp ;
     message_database.insert(data) ;
     response.json('success') ;
+}) ;
+
+app.post('/usradd', (request, response)=>{
+    console.log('server got a request to add a user!') ;
+    const timestamp = Date.now() ;
+    const data = request.body ;
+    data.timestamp = timestamp ;
+    credential_database.insert(data) ;
+    response.json('successfully added user to cred db') ;
 }) ;
 
 app.get('/logs/remove/:username', (request, response) => {
