@@ -3,9 +3,6 @@ const express = require('express') ;
 // const fetch = require('node-fetch') ;
 const Datastore = require('nedb') ;
 
-import { initializeApp } from 'firebase-admin';
-const fbapp = initializeApp() ;
-
 //  constants in program
 const port = 3000 || process.env.PORT ;
 
